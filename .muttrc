@@ -1,0 +1,156 @@
+# mutt configuration by Andreas Krennmair <ak@synflood.at>
+
+# basic mailbox settings
+
+set mbox_type = Maildir
+set folder = ~/Maildir
+set mbox = ~/Maildir
+set spoolfile = ~/Maildir
+
+mailboxes `echo -n "+ "; find ~/Maildir -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
+
+# SMTP configuration
+set smtp_url=smtp://username:password@smtp.strato.de/
+
+send-hook . set record=+.Sent
+# set from depending on folder (match last)
+folder-hook . my_hdr "From: Andreas Krennmair <ak@synflood.at>"
+folder-hook \.newsbeuter\.org my_hdr "From: Andreas Krennmair <ak@newsbeuter.org>"
+folder-hook \.krzz my_hdr "From: Andreas Krennmair <admin@krzz.de>"
+folder-hook \.joinmytalk my_hdr "From: Andreas Krennmair <admin@joinmytalk.com>"
+
+folder-hook . set signature = ~/.signature
+folder-hook \.krzz set signature = ~/.signature.krzz
+folder-hook \.joinmytalk set signature = ~/.signature.joinmytalk
+
+# mailing lists
+
+lists mutt-dev@
+
+# misc. settings
+
+set beep = no
+set beep_new
+set sort = threads
+set sort_aux = last-date-received
+
+set write_inc = 100
+set read_inc = 100
+
+set tilde = yes
+
+set timeout = 30
+
+set smileys = (>From)|(:[-^]?[][)(><}{|/DP])
+
+set editor = "vim -c ':set tw=78'"
+set signature = ~/.signature
+
+set attribution = "* %n <%a> [%(%Y-%m-%d %H:%M)]:"
+
+set mail_check = 60
+
+set allow_8bit
+
+set abort_nosubject = no
+set move = no
+
+set edit_headers = yes
+set include = yes
+
+set mark_old = no
+
+set charset = "utf-8"
+set send_charset = "utf-8"
+
+set ascii_chars = no
+
+set smart_wrap
+set wrapmargin = 10
+unset markers
+set tilde
+
+set certificate_file = /home/ak/mutt/certificate
+
+set text_flowed = yes
+
+set quit = ask-no
+
+set hostname = synflood.at
+set realname = "Andreas Krennmair"
+
+set sidebar_width = 30
+set sidebar_visible = yes
+set sidebar_delim = " "
+
+set implicit_autoview
+
+set header_cache = '~/.mutt-cache/'
+
+set sort_browser=alpha
+
+set folder_format="%N %F %2l %-8.8u %-8.8g %8s %d %f"
+
+set status_format="%h %f: %?M?%M/?%m mails %?n?%n new ?%?p?%p postponed ?%?t?%t tagged ?%?d?%d deleted ? %?b?%b mailboxes to go?%> %r"
+
+set pager_index_lines = 8
+
+hdr_order From Date: From: To: Cc: Subject:
+
+ignore *
+unignore from date date to cc subject user-agent newsgroups followup-to reply-to
+
+# key bindings
+
+bind index \Cp sidebar-prev
+bind index \Cn sidebar-next
+bind index \Cb sidebar-open
+bind pager \Cp sidebar-prev
+bind pager \Cn sidebar-next
+bind pager \Cb sidebar-open
+
+
+# macros
+
+macro compose 1 '<enter-command>set my_hdr="Andreas Krennmair <ak@synflood.at>"\n'
+macro compose 2 '<enter-command>set my_hdr="Andreas Krennmair <ak@newsbeuter.org>"\n'
+macro compose 3 '<enter-command>set my_hdr="Andreas Krennmair <andreas@krennmair.com>"\n'
+macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N<tag-prefix>t" "Mark all new messages as read"
+macro index B '<enter-command>toggle sidebar_visible<enter>'
+macro pager B '<enter-command>toggle sidebar_visible<enter>'
+
+
+# color settings
+
+
+color normal            white            black
+color attachment        green             black
+color hdrdefault        blue           black
+color indicator         brightyellow     blue
+color markers           red             black
+color quoted            cyan             black
+color signature         green           black
+color status            brightyellow     blue
+color tilde             white            black
+color tree              red            black
+
+# highlight some parts of the body
+color body              white      blue (https?|ftp)://[\-\.\,/%~_:?\#a-zA-Z0-9]+
+color body green black "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]"
+color body brightgreen black  '#[0-9a-z]+'
+color body brightgreen black  '@[0-9a-z]+'
+
+# make deleted messages hardly visible
+color index blue black "~D"
+
+# highlight flagged messages
+color index brightred   black "~F"
+
+# messages to which I've already replied
+color index blue         black  '~Q'
+
+# mailboxes with new items in sidebar
+color sidebar_new       red             white
+
+
+

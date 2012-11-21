@@ -37,6 +37,16 @@ set noexpandtab
 
 set wildchar=<TAB>
 
-set completeopt=menu
+set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}%=%c,%l/%L\ %P
+
+function! FindFunc()
+	let subpattern = '\(sub\|function\|func\) [^{]\+'
+	let subline = search(subpattern, 'bnW')
+	if !subline
+		return 'not in func'
+	else
+		return matchstr(getline(subline), subpattern)
+	endif
+endfunction
 
 autocmd vimenter * if !argc() | NERDTree | endif

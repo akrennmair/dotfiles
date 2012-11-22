@@ -28,6 +28,8 @@ set ignorecase
 set incsearch
 set hlsearch
 
+set number
+
 set laststatus=2
 
 set listchars=tab:>.,trail:.,eol:<

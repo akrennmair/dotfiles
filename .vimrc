@@ -39,7 +39,11 @@ set noexpandtab
 
 set wildchar=<TAB>
 
-set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}%=%c,%l/%L\ %P
+set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*%=%c,%l/%L\ %P
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+"let g:syntastic_check_on_open=1
 
 function! FindFunc()
 	let subpattern = '\(sub\|function\|func\) [^{]\+'

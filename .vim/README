@@ -4,3 +4,4 @@ install:
 - gocode by running vim/pathogen_update.sh: https://github.com/nsf/gocode
 - NERDtree: https://github.com/scrooloose/nerdtree
 - SnipMate: https://github.com/garbas/vim-snipmate
+- Syntastic: https://github.com/scrooloose/syntastic

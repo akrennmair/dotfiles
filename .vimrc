@@ -32,7 +32,7 @@ set number
 
 set laststatus=2
 
-set listchars=tab:>.,trail:.,eol:<
+set listchars=tab:\|.,trail:.,eol:<,nbsp:_
 set list
 
 set noexpandtab

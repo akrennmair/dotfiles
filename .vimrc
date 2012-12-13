@@ -55,4 +55,14 @@ function! FindFunc()
 	endif
 endfunction
 
+function! Ack(args)
+	let grepprg_back=&grepprg
+	set grepprg=ack\ -H\ --nocolor\ --nogroup
+	execute "silent! grep " . a:args
+	botright copen
+	let &grepprg=grepprg_back
+endfunction
+
+command! -nargs=* -complete=file Ack call Ack(<q-args>)
+
 autocmd vimenter * if !argc() | NERDTree | endif

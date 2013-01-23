@@ -5,3 +5,4 @@ install:
 - NERDtree: https://github.com/scrooloose/nerdtree
 - SnipMate: https://github.com/garbas/vim-snipmate
 - Syntastic: https://github.com/scrooloose/syntastic
+- vim-mkdir-on-write: https://github.com/scy/vim-mkdir-on-write

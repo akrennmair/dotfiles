@@ -57,7 +57,7 @@ export PATH=$HOME/arm-cs-tools/bin:$PATH
 # oh-my-zsh configuration:
 
 COMPLETION_WAITING_DOTS="true"
-ZSH_THEME=lukerandall
+ZSH_THEME=ak
 
 plugins=(brew cp git git-flow github go golang osx perl)
 

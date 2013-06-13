@@ -43,7 +43,7 @@ set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}\ %#war
 
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [ 'go' ], 'passive_filetypes': ['c', 'cpp'] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [ ], 'passive_filetypes': ['go', 'c', 'cpp'] }
 
 function! FindFunc()
 	let subpattern = '\(sub\|function\|func\) [^{]\+'
@@ -65,4 +65,38 @@ endfunction
 
 command! -nargs=* -complete=file Ack call Ack(<q-args>)
 
-autocmd vimenter * if !argc() | NERDTree | endif
+nmap <F6> :TagbarToggle<CR>
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+function! s:GoLint()
+	cexpr system("golint " . shellescape(expand('%')))
+	copen
+endfunction
+command! GoLint :call s:GoLint()

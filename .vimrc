@@ -39,11 +39,15 @@ set noexpandtab
 
 set wildchar=<TAB>
 
-set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*%=%c,%l/%L\ %P
+" set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'}]%h%m%r%y\ %{FindFunc()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*%=%c,%l/%L\ %P
 
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [ ], 'passive_filetypes': ['go', 'c', 'cpp'] }
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 
 function! FindFunc()
 	let subpattern = '\(sub\|function\|func\) [^{]\+'

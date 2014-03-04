@@ -104,3 +104,12 @@ function! s:GoLint()
 	copen
 endfunction
 command! GoLint :call s:GoLint()
+
+map <leader>n <plug>NERDTreeTabsToggle<CR>
+map <leader>t :CtrlPTag<CR>
+
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+nnoremap tn :tabnew<CR>
+nnoremap te :tabedit<CR>
+

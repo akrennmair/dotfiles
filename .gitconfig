@@ -11,3 +11,5 @@
 	trustExitCode = true
 [init]
 	templatedir = ~/.git_template
+[push]
+	default = simple
